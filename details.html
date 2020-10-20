@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js Test</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="intro">
+            <aside>
+
+                <div id="example">
+                    <section class="tabs-content">
+                        <section v-show="activeTab === 'tabs-1'">
+                            <img class="" src="images/palma01.jpg" alt="ホーム" width="400" height="400">
+                        </section>
+                        <section v-show="activeTab === 'tabs-2'">
+                            <img class="" src="images/palma02.jpg" alt="ホーム" width="400" height="400">
+                        </section>
+                        <section v-show="activeTab === 'tabs-3'">
+                            <img class="" src="images/palma03.jpg" alt="ホーム" width="400" height="400">
+                        </section>
+                    </section>
+                    
+                    <div class="tab-menu">
+                        <a v-bind:class="{active: activeTab === 'tabs-1'}" v-on:click="activeTab = 'tabs-1'">
+                        <img class="" src="images/palma01.jpg" alt="ホーム" width="130" height="130">  
+                          </a>
+                        <a id="tab-img" v-bind:class="{active: activeTab === 'tabs-2'}" v-on:click="activeTab = 'tabs-2'">
+                       <img class="" src="images/palma02.jpg" alt="ホーム" width="130" height="130">   
+                          </a>
+                        <a v-bind:class="{active: activeTab === 'tabs-3'}" v-on:click="activeTab = 'tabs-3'">
+<img class="" src="images/palma03.jpg" alt="ホーム" width="130" height="130">  
+      </a>
+                    </div>
+                </div>
+
+
+
+       
+
+        </aside>
+        <article>
+            <h1>パルマの生ハム 16か月熟成　５０g</h1>
+<div class="details-price">
+            <h4>価格：（税込）</h4>
+            <h3>１５００円</h3>
+            </div>
+        <div class="cont">
+            <h2>数量</h2>
+                            <select id="cont-list">
+                            <option value="">-</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                            </select>
+                </div>
+                    <div id="app-icon">
+                        <a v-on:click="cartAlert"><button class="details-favorit"> お買い物カゴに入れる。 </button></a>
+                        <a v-on:click="favoriteAlert"><button class="details-cart">お気に入りに追加する</button></a>
+                    </div>
+            <p>*.＊イタリアハムの王様と言われる生ハム＊.*</p>
+            <p>限定された地域と限定された飼育方法で作られた生ハム<br>はワイン好きにも、お肉好きにもたまらない一品です。</p>
+            <p>【熟成一覧】<br> ＊１６ヶ月熟成：生産量も多くスタンダードなタイプ。
+                <br> ＊２４ヶ月熟成：１６か月よりも熟成が長い文
+                <br>しっかりとした味わいが特徴。<br> ＊３０ヶ月熟成：３０か月の熟成は非常に希少！
+                <br>しっかりとした味わいが特徴的です。
+            </p>
+            <p>【商品詳細】<br> ＊内容量:５０g
+                <br> ＊保存方法；要冷蔵
+                <br> ＊最終加工地:イタリア
+
+        </article>
+    </div>
+    </div>
+    <script src="js/main.js"></script>
+    <!--font-awesome-->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
+</body>
+
+</html>

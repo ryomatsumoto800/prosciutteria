@@ -1,0 +1,163 @@
+ <!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>WCB Cafe - MENU</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+    <!--vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="app" class="container mt-5">
+	<div class="row">
+		<div class="col-md-8">
+		<h1>Step:{{ stepNumber }}</h1>
+		<keep-alive>
+		<form-name v-if="stepNumber === 1" @update="updateForm"></form-name>
+		<form-contact v-if="stepNumber === 2" @update="updateForm"></form-contact>
+		<form-birthday v-if="stepNumber === 3" @update="updateForm"></form-birthday>
+		<form-confirm v-if="stepNumber === 4" v-bind:form="form"></form-confirm>
+		</keep-alive>
+
+		<button class="btn btn-primary" @click="backStep" v-show="stepNumber != 1">Back</button>
+		<button class="btn btn-primary" @click="nextStep" v-show="stepNumber != 4">Next</button>
+
+		</div>
+
+
+		<pre><code>{{ form }}</code></pre>
+
+	</div>
+</div>
+<script>
+
+Vue.component('form-name',{
+	template: `<form @input="submit">
+				<h2>Name Info</h2>
+				<div class="form-group">
+				<label for="firstName">First Name</label>
+				<input type="text" class="form-control" v-model="firstName" placeholder="Enter First Name">
+				</div>
+				
+				<div class="form-group">
+				<label for="lastName">Last Name</label>
+				<input type="text" class="form-control" v-model="lastName" placeholder="Enter Last Name">
+				</div>
+				</form>`,
+	data: function(){
+		return {
+				firstName: null,
+				lastName: null
+		}
+	},
+	methods: {
+		submit: function(){
+			this.$emit('update',{
+				firstName: this.firstName,
+				lastName: this.lastName
+			});
+		}
+	}
+});
+
+Vue.component('form-contact',{
+	template: `<form @input="submit">
+				<h2>Contact Info</h2>
+				<div class="form-group">
+				<label for="Email">Email</label>
+				<input type="email" class="form-control" v-model="Email" placeholder="Enter email">
+				</div>					
+				<div class="form-group">
+				<label for="tel">Tel</label>
+				<input type="text" class="form-control" v-model="tel" placeholder="Enter phone">
+				</div>
+				</form>`,
+	data: function(){
+		return {
+			Email: null,
+			tel: null
+		}
+	},
+	methods: {
+		submit: function(){
+			this.$emit('update',{
+				Email: this.Email,
+				tel: this.tel
+			});
+		}
+	}
+});
+
+Vue.component('form-birthday',{
+	template: `<form @input="submit">
+				<h2>User Info</h2>
+				<div class="form-group">
+				<label for="Birthday">Birthday</label>
+				<input type="date" class="form-control" v-model="birthday" placeholder="Enter Birthday">
+				</div>
+				</form>`,
+	data: function(){
+		return {
+			birthday: null
+		}
+	},
+	methods: {
+		submit: function(){
+			this.$emit('update',{
+				birthday: this.birthday				
+			});
+		}
+	}
+});
+
+Vue.component('form-confirm',{
+	template: `<div>
+			<h2>Confirmation</h2>
+		<p>Name: {{ form.firstName }} {{ form.lastName }}</p>
+		<p>Email: {{ form.Email }}</p>
+		<p>Tel: {{ form.tel }}</p>
+		<p>Birthday: {{ form.birthday }}</p>
+		</div>
+		<button>ffff</button>
+		`,
+	props:{
+		form: Object
+	},
+});
+
+const app = new Vue({
+	el: '#app',
+	data: {
+		stepNumber: 1,
+		form: {
+			firstName: null,
+			lastName: null,
+			Email: null,
+			tel: null,
+			birthday: null
+		}
+	},
+	methods:{
+		updateForm:function(formData){
+			Object.assign(this.form, formData);
+		},
+		backStep:function(){
+			this.stepNumber--;
+		},			
+		nextStep:function(){
+			this.stepNumber++;
+		},
+	}
+});
+</script>
+</body>
+</html>

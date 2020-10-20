@@ -1,0 +1,557 @@
+@charset "UTF-8";
+
+/* 共通部分
+------------------------------- */
+html {
+    font-size: 100%;
+}
+body{
+    font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
+    line-height: 1.7;
+
+}
+a {
+  color:#000;
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
+}
+.container{
+  width: 100%;
+  max-width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/*
+headerパーツ 
+*/
+.modal {
+   display: flex;
+      justify-content: center;
+}
+
+.modal1 a{
+    width: 30px;
+    margin:0 30px 0;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+
+.modal1 a:hover {
+    color: #ffffff;
+   background-color:green;
+    cursor: pointer;
+      border-radius: 10px;
+      padding:10px;
+}
+
+.modal-text{
+ text-align:center;
+    font-size:200%;
+    margin-top:30px;
+  
+}
+
+button{
+    font-weight: bold;
+    margin: 10px 0;
+    font-weight: bold;
+    padding: 10px 30px;
+    background-color: red;
+    color: #fff;
+    border-style: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.modal-btn{
+  background-color:green;
+}
+
+/*
+モーダル部分 
+*/
+
+#overlay{
+  /*　要素を重ねた時の順番　*/
+  z-index:1;
+  /*　画面全体を覆う設定　*/
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:rgba(0,0,0,0.5);
+
+  /*　画面の中央に要素を表示させる設定　*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+#content{
+  z-index:2;
+  width:80%;
+  height:80%;
+  padding: 1em;
+  background:#fff;
+    overflow-y:scroll;　
+}
+/*入力フォーム*/
+.Form {
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 720px;
+}
+
+.Form-Item {
+  border-top: 1px solid #ddd;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.Form-Item-input {
+background-color:red;
+}
+
+.Form-Item:nth-child(5) {
+  border-bottom: 1px solid #ddd;
+}
+.Form-Item-Label {
+  color:red;
+  width: 100%;
+  max-width: 248px;
+  letter-spacing: 0.05em;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+/*カートパーツ*/
+table {
+  border-collapse: collapse;
+  border-spacing: 5px;
+  margin: 0 auto;
+　width:100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+table a:hover{
+  color:red;
+}
+
+table th,
+table td {
+  padding: 10px 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+table th {
+  padding: 15px 0;
+  font-size: 14px;
+  text-align: center;
+}
+table tr{
+  text-align: center;
+  padding: 20px 0;
+  background-color: #fff;
+  color:#00000;
+}
+
+.total{
+  margin-top:60px;
+  font-size:30px;
+  font-family:serif;
+}
+
+/*リンクパーツ*/
+
+.main-title h1{
+    font-size: 80px;
+  text-align: center;
+    font-family:impact;
+}
+
+.main-title p{
+    text-align: center;
+    font-family:impact;
+}
+
+.sub-title{
+    margin-top:50px;
+    font-family: impact;
+    display: flex;
+    justify-content:center;
+    list-style:none;
+}
+
+.sub-title a {
+  margin:15px;
+  color:#000;
+  font-weight:700;
+ 
+}
+
+.sub-title a:hover {
+    background-color:#EEEEEE;
+    padding:10px;
+font-size:110%;
+    color: #ffffff;
+    background-color: red;
+    cursor: pointer;
+      border-radius: 10px;
+      padding:10px;
+}
+
+#form02{
+    background-color: #fff;
+    width:200px;
+    height: 30px;
+    border: 0.03px black solid;
+    margin:0 auto; 
+}
+#form02 input{
+    vertical-align: top;
+    margin: 0px;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+#form02{
+    border-radius: 10px;
+}
+#input02{
+    border: none;
+    width: 170px;
+    padding-left: 10px;
+}
+#submit02{
+    width: 20px;
+    border: none;
+    background-image: url(../images/pig02.jpg);
+    background-position: center;
+    background-size: auto 50%;
+    background-repeat: no-repeat;
+}
+
+/*メインパーツ*/
+.slider-outer{
+
+  width: 960px;
+  height: 450px;
+   object-fit: cover;
+  overflow: hidden;
+  text-align:center;
+  margin:auto;
+
+}
+.slider-inner{
+  position: absolute;
+   width: 960px;
+  height: 450px;
+   object-fit: cover;
+}
+.slide-img {
+   width: 960px;
+  height: 450px;
+  
+  object-fizt: cover;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: all 1s ease;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.item{
+    display:flex;
+}
+
+
+.intro{
+        display:flex;
+}
+/*イントロパーツ*/
+aside{
+    width:50%;
+     padding:20px;
+}
+article{
+    width:50%;
+    padding-top:40px;
+}
+
+.intro-image{
+    height:350px;
+    width:100%;
+}
+
+.news{
+    margin:30px;
+ text-align:center;
+}
+
+
+/*topiksパーツ*/
+.topics{
+display:grid;
+gap:26px;
+grid-template-columns: 1fr 1fr;
+padding:30px;
+background-color:#000;
+}
+.new-item{
+display:grid;
+gap:26px;
+grid-template-columns:  1fr 1fr 1fr;
+margin:30px 0 30px;
+}
+
+.card {
+  margin: 30px auto;
+  width: 250px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #ccc;
+}
+
+.card:hover{
+   
+    box-shadow:0 6px 14px rgba(0, 0, 0, 0.24);
+    transform:translate(0, -5px);
+}
+.card-img {
+  border-radius: 5px 5px 0 0;
+  max-width: 100%;
+}
+/*カードテキストはindexページ*/
+.card-text {
+  margin-bottom: 30px;
+  text-align: center;
+  color: #333;
+  margin-block-start: -1rem;
+  padding:0 15px 0;
+}
+/*カードタイトルはmainページ*/
+.card-title{
+  text-align:center;
+  
+}
+
+.card-link {
+  text-align: center;
+  border-top: 1px solid #eee;
+  padding: 0px;
+  display:flex;
+ text-align:center;
+ background-color:#000;
+}
+
+.category{
+display:grid;
+gap:26px;
+grid-template-columns: 1fr 1fr 1fr;
+margin:30px 0 30px;
+padding:30px;
+background-color:#000;
+}
+
+
+.icon{
+  font-size:16px;
+  margin:0 auto;
+}
+.icon a{
+margin-left:15px;
+color:#fff;
+}
+
+.fa-star:hover{
+  color:#FFCC00;
+}
+.fa-cart-plus:hover{
+  color:#0066FF;
+}
+
+
+/*ボタン*/
+.btn,
+a.btn,
+button.btn {
+
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  border-radius: 0.5rem;
+
+}
+
+a.btn-border {
+  border-radius: 0;
+}
+
+a.btn-border:before,
+a.btn-border:after {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  content: '';
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  background: #000;
+}
+a.btn-border:before {
+  top: 0;
+  left: 0;
+}
+a.btn-border:after {
+  right: 0;
+  bottom: 0;
+}
+a.btn-border:hover:before,
+a.btn-border:hover:after {
+  width: 0;
+}
+/*フッターパーツ*/
+footer {
+
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 70px;
+	background-color: green;
+	text-align: center;
+}
+footer .copyright {
+	float: left;
+	width: 50%;
+}
+footer .copyright p {
+	font-size: 0.7em;
+	line-height: 70px;
+	padding-left: 10%;
+	letter-spacing: 1px;
+	color: #fff;
+}
+footer .sns {
+	float: right;
+	width: 50%;
+}
+footer .sns a {
+	font-weight: bold;
+	line-height: 70px;
+	float: left;
+	-webkit-transition: all, 0.3s;
+	        transition: all, 0.3s;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+}
+footer .sns a:hover {
+	-webkit-transition: all, 0.3s;
+	        transition: all, 0.3s;
+	background-color: #222222;
+}
+footer .sns .insta {
+	font-size: 1.2em;
+	width: 20%;
+	background-color: #9400D3;
+}
+footer .sns .fb {
+	font-size: 1.2em;
+	width: 20%;
+	background-color: #3b5999;
+}
+footer .sns .tw {
+	font-size: 1.2em;
+	width: 20%;
+	background-color: #55acee;
+}
+footer .sns .contact {
+	font-size: 0.8em;
+	width: 40%;
+	background-color: red;
+}
+
+/*indexページ*/
+
+
+.grid {
+  display: grid;
+  gap: 26px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin-top: 6%;
+  margin-bottom: 50px;
+}
+
+
+/*フェードインアニメ*/
+/*左から右にフェードイン*/
+.news {
+  opacity: 0.1;
+  transform: translateX(-20px);
+  transition: all 1s;
+}
+.news.scrollin {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/**deyails　ページ */
+.tabs-content{
+margin-top:50px;  
+}
+.tab-menu{
+  margin-top:15px;
+}
+.details-price{
+  display:flex;
+}
+.details-price h3{
+  font-size:30px;
+  font-family:impact;
+  margin-left:30px;
+}
+.details-favorit{
+  margin-top:15px;
+background-color:green;  
+width:400px;
+}
+.details-cart{
+  background-color:red;
+  width:400px;
+}
+
+.details-favorit:hover,.details-cart:hover{
+background-color:#000;  
+}
+
+.cont{
+  display:flex;
+  padding-left:30px;
+  margin-bottom:30px;
+}
+#cont-list{
+margin-top:20px;
+margin-left:60px;
+padding-left:40px;
+width:150px;
+height:45px;
+font-size:25px;
+}

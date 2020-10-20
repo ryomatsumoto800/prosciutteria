@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--CSS-->
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+
+    <!--vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>HTML5サンプル</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <header id="header">
+
+
+            <div class="modal">
+                <div id="sing-up">
+                    <a v-on:click="openModal('entry')">
+                        <div class="modal1">
+                            <i class="ec-headerNav__itemIcon fas fa-lock fa-fw"></i>　新規会員登録</a>
+                    </div>
+                    <div id="overlay" v-show="showContent==='entry'" v-on:click>
+
+                        <div id="content">
+                            <h2 class="modal-text">新規会員登録</h2>
+                            
+<form id="form" name="test_form" onsubmit="return check();">
+	テキストボックス
+	<input type="text" name="text" placeholder="text">
+ 
+	パスワード
+	<input type="password" name="password" placeholder="password">
+ 
+	複数行のテキスト
+	<textarea name="textarea" cols="50" rows="5" placeholder="placeholder"></textarea>
+ 
+	ラジオボタン
+	<input type="radio" name="radio" value="項目1" checked>項目1
+	<input type="radio" name="radio" value="項目2">項目2
+	<input type="radio" name="radio" value="項目3">項目3
+ 
+	チェックボックス
+	<input type="checkbox" name="checkbox" value="項目1">項目1
+	<input type="checkbox" name="checkbox" value="項目2">項目2
+	<input type="checkbox" name="checkbox" value="項目3">項目3
+ 
+	セレクトボックス
+	<select name="selectbox">
+		<option value="項目1">項目1</option>
+		<option value="項目2">項目2</option>
+		<option value="項目3">項目3</option>
+	</select>
+	<input type="submit" value="送信">
+</form>
+                            
+                            <div class="modal-text">
+                                <button>送信</button>
+                                <button v-on:click="closeModal">閉じる</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="log-out">
+                </div>
+
+                <div id="log-in">
+                     <div class="modal1">
+                    <a v-if="!isLogin" v-on:click="openModal('login')"><i class="ec-headerNav__itemIcon fas fa-user fa-fw"></i>　ログイン</a>
+                    <a v-else v-on:click="logout"><i class="ec-headerNav__itemIcon fas fa-user fa-fw"></i>　ログアウト</a>
+                    </div>
+                    
+                    <div id="overlay" v-show="showContent==='login'">
+
+                        <div id="content" v-if="!isLogin">
+                            <h2 class="modal-text">ログイン</h2>
+                            <form action="" method="post">
+                                <div class="Form">
+
+                                    <div class="Form-Item">
+                                        <p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>メールアドレス</p>
+                                        <input type="email" class="Form-Item-Input" placeholder="例）example@gmail.com">
+                                    </div>
+                                    <div class="Form-Item">
+                                        <p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>パスワード</p>
+                                        <input type="email" class="Form-Item-Input" placeholder="例）4文字　数字">
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="modal-text">
+                                <button v-on:click="login">送信</button>
+                                <button v-on:click="closeModal">閉じる</button>
+                            </div>
+                        </div>
+                        <div v-else id="content">
+                            ログインしました
+                            <button v-on:click="closeModal">閉じる</button>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div id="favorite">
+                    <a v-on:click="openModal('favorite')">
+                        <div class="modal1">
+                            <i class="ec-headerNav__itemIcon fas fa-shopping-cart"></i>　カート</a>
+                    </div>
+                    <div id="overlay" v-show="showContent==='favorite'" v-on:click>
+                        <div id="content">
+                            <h2 class="modal-text">カート一覧</h2>
+                            <table class="table_box">
+                                <tr>
+                                    <th>アイテム一覧</th>
+                                    <th>商品</th>
+                                    <th>商品案内</th>
+                                    <th>個数</th>
+                                    <th>削除</th>
+                                    <th>価格</th>
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img class="" src="images/palma01.jpg" alt="生ハム"width="100" height="100"></a></td>
+                                    <td>パルマの生ハム 16か月熟成　５０g</td>
+                                    <td>イタリアハムの王様とも言われる生ハム</td>
+                                    <td>
+                                        <select name="month" id="month">
+                                            <option value="">-</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                        </select>
+                                                                        </td>
+
+                                    <td><a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                    <td>1200円</td>
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img class="" src="images/kitalla01.jpg" alt="生ハム"width="100" height="100"></a></td>
+                                    <td>キタッラ　アラ　アマトリチャーナ</td>
+                                    <td>シェフ修行の地アブルッツォの手打ちパスタ</td>
+                                    <td>
+                                          <select name="month" id="month">
+                                            <option value="">-</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                        </select>
+                                    </td>
+                                    <td><a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                    <td>1500円</td>
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img class="" src="images/jelart01.jpg" alt="生ハム"width="100" height="100"></a></td>
+                                    <td>フランボワーズのジェラート</td>
+                                    <td>イタリアのアイスと言えばジェラート</td>
+                                    <td>
+                                        <select name="month" id="month">
+                                            <option value="">-</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                        </select>
+                                    </td>
+                                    <td><a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                    <td>1500円</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>合計</td>
+                                    <td class="total">５７００円</td>
+                                </tr>
+                            </table>
+                            <div class="modal-text">
+                                <button class="modal-btn">送信</button>
+                                <button v-on:click="closeModal">閉じる</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cart">
+                    <a v-on:click="openModal('cart')">
+                        <div class="modal1">
+                            <i class="ec-cartNavi__icon fas fa-heart fa-fw"> </i>　お気に入り</a>
+                    </div>
+                    <div id="overlay" v-show="showContent==='cart'" v-on:click="closeModal">
+                        <div id="content">
+                     <h2 class="modal-text">お気に入り一覧</h2>                    
+                           <table class="table_box">
+                                <tr>
+                                    <th>アイテム一覧</th>
+                                    <th>商品</th>
+                                    <th>商品案内</th>
+                                    <th>削除</th>
+                                 
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img class="" src="images/palma01.jpg" alt="生ハム"width="100" height="100"></a></td>
+                                    <td>パルマの生ハム 16か月熟成　５０g</td>
+                                    <td>イタリアハムの王様とも言われる生ハム</td>
+
+
+                                    <td><a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                 
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img class="" src="images/kitalla01.jpg" alt="生ハム"width="100" height="100"></a></td>
+                                    <td>キタッラ　アラ　アマトリチャーナ</td>
+                                    <td>シェフ修行の地アブルッツォの手打ちパスタ</td>
+     
+                                    <td><a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img class="" src="images/jelart01.jpg" alt="生ハム"width="100" height="100"></a></td>
+                                    <td>フランボワーズのジェラート</td>
+                                    <td>イタリアのアイスと言えばジェラート</td>
+                                    <td><a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                </tr>
+                            </table>
+                            <div class="modal-text">
+                            <button v-on:click="closeModal">閉じる</button>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="main-title">
+                <h1>LA-PROSCIUTTERIA</h1>
+                <p>本場イタリアで修行したシェフが送る、イタリアン料理と生ハム専門店</p>
+                <form id="form02" action="#">
+                    <input id="input02" type="text" placeholder=" 検索..">
+                    <input id="submit02" type="submit" value="">
+                </form>
+
+                </form>
+            </div>
+
+            <ul class="sub-title">
+                <li><a href="index.html">全て</a></li>
+                <li><a href="#">新作</a></li>
+                <li><a href="#">生ハム</a></li>
+                <li><a href="#">パスタ</a></li>
+                <li><a href="#">ジェラート</a></li>
+            </ul>
+    </div>
+    </header>
+
+    <div class="container">
+        <div id="slider-outer" class="slider-outer">
+            <transition name="fade">
+                <div class="slider-inner" :key="idx" v-for="(slide, idx) in slides" v-if="current_slide == idx">
+                    <img class="slide-img" v-bind:src="slides[idx].img" :key="slides[idx].img">
+                </div>
+            </transition>
+        </div>
+        <div class="intro">
+            <aside>
+                <div class="news">
+                    <p>CUBE GELATO ICE</p>
+                    <h2>彩のジェラート"CUBE"をご堪能ください。</h2>
+                    <h4>ジェラートとはイタリアン・アイスクリームのことで、一般的なアイスクリームに比べて、乳脂肪分が低いのが特徴です。 当店では厳選した旬の果物のおいしさをそのままジェラートに仕上げました。風味が濃厚でありながら、甘さ控えめでヘルシーなキューブジェラートをご堪能ください。 さらにジェラートの製法を活かした、アイスキャンディ・アイスサンドも販売しております。</h4>
+                </div>
+            </aside>
+            <article>
+                <a href="index.html"><img class="intro-image" src="images/intro05.jpg" alt="ホーム"></a>
+            </article>
+        </div>
+    </div>
+    <div class="news">
+        <p>特集</p>
+        <h1>TOPICS</h1>
+    </div>
+    <div class="container">
+        <div class="topics">
+            <div class="item">
+
+                <a href="{{ url('/products') }}"><img class="" src="images/intro06.jpg" alt="ホーム"width="500" height="150"></a>
+            </div>
+            <div class="item">
+                <a href="index.html"><img class="" src="images/intro07.jpg" alt="ホーム"width="500" height="150"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="news">
+        <p>新着</p>
+        <h1>NEW ITEM</h1>
+    </div>
+
+    <div class="container">
+        <div class="new-item">
+
+            <div class="item">
+                <section class="card">
+                    <img class="card-img1" src="images/uni01.jpg" alt="ホーム" width="400" height="200">
+                    <div class="card-content">
+                        <h1 class="card-title">国産生うにの<br>リングイネ</h1>
+                    <div class="card-text">
+                        <p>-richo di marre-</p><p>国産の生ウニと、少し平たく喉越しのあるリングイネのパスタを使った当店人気のパスタです。ご注文はお早めに</p>
+                    </div>
+                    </div>
+
+                </section>
+            </div>
+
+            <div class="item">
+                <section class="card">
+                    <img class="card-img" src="images/jelart01.jpg" alt="ホーム" width="300" height="200">
+                    <div class="card-content">
+                        <h1 class="card-title">フランボワーズの<br>ジェラート</h1>
+                     <div class="card-text">   
+                        <p>-franbowors di jelart-</p><p>イタリアのデザートと言えば<br>ジェラート！！フランボワーズのソースをたっぷり使って<br>作ったジェラートです。</p>
+                    </div>
+                     </div>
+
+                </section>
+            </div>
+
+            <div class="item">
+                <section class="card">
+                    <img class="card-img" src="images/kitalla01.jpg" alt="ホーム" width="300" height="200">
+                    <div class="card-content">
+                        <h1 class="card-title">キタッラ　アラ<br>アマトリチャーナ<br></h1>
+                        <div class="card-text">
+                        <p>-kitalla ala amatorichana-</p><p>シェフ修行の地アブルッツォの手打ちパスタ。ピリ辛のソースと、厚切りのパンチェッタが組み合わさって絶品です。</p>
+                    </div>
+                     </div>
+
+                </section>
+            </div>
+        </div>
+
+    </div>
+    <div class="news">
+        <p>カテゴリー</p>
+        <h1>CATEGORY</h1>
+    </div>
+    <div class="container">
+        <div class="category">
+            <div class="item">
+
+                <a href="index.html"><img class="" src="images/intro08.jpg" alt="ホーム"width="300" height="150"></a>
+            </div>
+            <div class="item">
+                <a href="index.html"><img class="" src="images/intro09.jpg" alt="ホーム"width="300" height="150"></a>
+            </div>
+            <div class="item">
+                <a href="index.html"><img class="" src="images/intro10.jpg" alt="ホーム"width="300" height="150"></a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="copyright">
+            <p>© 2020 - PROSCIUTTERIA</p>
+        </div>
+        <div class="sns">
+            <a href="#" class="contact">Contact</a>
+            <a href="#" class="fb"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+            <a href="#" class="tw"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+            <a href="#" class="insta"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+    <!--font-awesome-->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
+    </div>
+</body>
+
+</html>
