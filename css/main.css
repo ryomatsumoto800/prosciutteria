@@ -24,6 +24,35 @@ img {
   margin-left: auto;
 }
 
+.total-cost{
+  display:flex;
+  justify-content:center;
+}
+.total-cost h2{
+  font-size:40px;
+  font-family:serif;
+}
+.total-cost p{
+  margin:30px;
+  margin-top:60px;
+}
+
+.cost{
+  display:flex;
+   justify-content:center;
+}
+.cost p {
+  font-size:24px;
+  font-family:serif;
+}
+.cost h5{
+  margin-top:38px;
+  margin-left:10px;
+}
+
+#cart-close{
+  margin-top:19px;
+}
 /*
 headerパーツ 
 */
@@ -37,6 +66,7 @@ headerパーツ
     margin:0 30px 0;
     background-color: #ffffff;
     color: #000000;
+    white-space: nowrap
 }
 
 
@@ -49,11 +79,55 @@ headerパーツ
 }
 
 .modal-text{
- text-align:center;
+  justify-content:center;
     font-size:200%;
     margin-top:30px;
-  
+  display:flex;
 }
+
+.login-af{
+margin-top:180px;
+text-align:center;
+}
+.login-af div{
+margin: 0 auto;
+margin-top:80px;
+}
+
+/* 閉じるボタン　円 */
+.close {
+  margin-top:13px;
+  margin-left:30px;
+	font-size: 20px;
+	position: relative;
+	width: 1.4em;
+	height: 1.4em;
+	border: 0.1em solid #000033;
+	border-radius: 100%;
+}
+/* 左 */
+.close::before {
+	position: absolute;
+	top: 0.2em;
+	left: 0.6em;
+	width: 0.2em;
+	height: 1em;
+	content: "";
+	background-color: #000033;
+	transform: rotate(45deg);
+}
+/* 右 */
+.close::after {
+	position: absolute;
+	top: 0.6em;
+	left: 0.2em;
+	width: 1em;
+	height: 0.2em;
+	content: "";
+	background-color: #000033;
+	transform: rotate(225deg);
+}
+
 
 button{
     font-weight: bold;
@@ -68,9 +142,19 @@ button{
     border-radius: 5px;
 }
 .modal-btn{
-  background-color:green;
+  background-color:#000033;
+}
+.back{
+  text-align:center;
+}
+.back :hover{
+  color:#FFF;
+  background-color:#000;
 }
 
+#sin-close{
+  margin-top:19px;
+}
 /*
 モーダル部分 
 */
@@ -101,36 +185,42 @@ button{
     overflow-y:scroll;　
 }
 /*入力フォーム*/
-.Form {
-  margin-top: 80px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 720px;
+.text-box{
+ height:50px; 
 }
-
-.Form-Item {
-  border-top: 1px solid #ddd;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  width: 100%;
-  display: flex;
-  align-items: center;
+.iptext {
+	position: relative;
+	width: 80%;
+	margin: 0 auto;
+	padding-botomm:40px;
 }
-
-.Form-Item-input {
-background-color:red;
+.iptext input[type=text] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 8px 0;
+	padding: 0.3em;
+	transition: 0.3s;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+	outline: none;
 }
-
-.Form-Item:nth-child(5) {
-  border-bottom: 1px solid #ddd;
+.iptext input[type=text]:focus {
+	border-color: #da3c41;
 }
-.Form-Item-Label {
-  color:red;
-  width: 100%;
-  max-width: 248px;
-  letter-spacing: 0.05em;
-  font-weight: bold;
-  font-size: 18px;
+.iptext input[type=text] {
+	padding-left: 40px;
+}
+.iptext i {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	padding: 9px 8px;
+	transition: 0.3s;
+	color: #aaaaaa;
+}
+.iptext input[type=text]:focus + i {
+	color: #da3c41;
 }
 
 
@@ -314,7 +404,9 @@ gap:26px;
 grid-template-columns:  1fr 1fr 1fr;
 margin:30px 0 30px;
 }
-
+/**/
+/*カードパーツ*/
+/**/
 .card {
   margin: 30px auto;
   width: 250px;
@@ -334,11 +426,15 @@ margin:30px 0 30px;
 }
 /*カードテキストはindexページ*/
 .card-text {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   text-align: center;
   color: #333;
   margin-block-start: -1rem;
   padding:0 15px 0;
+}
+
+.card-text p{
+margin-bottom:-20px;  
 }
 /*カードタイトルはmainページ*/
 .card-title{
@@ -386,7 +482,6 @@ color:#fff;
 .btn,
 a.btn,
 button.btn {
-
   font-weight: 700;
   line-height: 1.5;
   position: relative;
@@ -555,3 +650,24 @@ width:150px;
 height:45px;
 font-size:25px;
 }
+
+/*sin-upページ*/
+
+
+
+.ip-list{
+  display:flex;
+}
+.ip-list p {
+  padding-top:10px;
+  margin-left:20px;
+  font-weight: 700;
+}
+
+.mandatory-btn{
+  color: #fff;
+  background-color: #eb6100;
+  border-radius: 80vh;
+  padding:10px;
+}
+

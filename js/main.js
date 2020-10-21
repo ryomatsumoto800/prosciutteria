@@ -1,8 +1,6 @@
 /*
-メインメニューのスクリーン
+モーダル
 */
-
-//import ComonHeader from './component/common/header.vue'
 const app = new Vue({
   el: '#header',
   components: {
@@ -45,9 +43,25 @@ const app = new Vue({
     }
   }
 })
-
+// ボタンのVueインスタンスモーダル部分
+new Vue({
+  el: '#modalBtn',
+  data: {
+    mention: ''
+  },
+  methods: {
+    execute: function() {
+      bus.$emit('click.trigger');
+      bus.$emit('deleteUserName.trigger', this.mention);
+    }
+  }
+})
+/*
+アラート
+*/
 const icon=new Vue({
   el:'#app-icon',
+  
   methods: {
     cartAlert: function() {
       alert("カートに追加しました");
@@ -57,7 +71,9 @@ const icon=new Vue({
     }
   }
 });
-//メインページのスライドショー
+/*
+スライドショー
+*/
 const slide=new Vue({
   el:'#slider-outer',
    data: {
@@ -88,20 +104,10 @@ new Vue({
 });
 
 
-// ボタンのVueインスタンスモーダル部分
-new Vue({
-  el: '#modalBtn',
-  data: {
-    mention: ''
-  },
-  methods: {
-    execute: function() {
-      bus.$emit('click.trigger');
-      bus.$emit('deleteUserName.trigger', this.mention);
-    }
-  }
-})
-//フェードイン
+/*
+フェードイン
+*/
+
 $(function() {
   $(window).scroll(function() {
     $('.news').each(function() {
