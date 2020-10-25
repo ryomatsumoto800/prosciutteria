@@ -40,6 +40,9 @@ const app = new Vue({
     },
     logout: function() {
     this.isLogin=false 
+    },
+    trashAlert: function(){
+    alert("削除しました。"); 
     }
   }
 })
@@ -68,7 +71,7 @@ const icon=new Vue({
     },
     favoriteAlert: function() {
       alert("お気に入りに追加しました。");
-    }
+    },
   }
 });
 /*
@@ -120,3 +123,28 @@ $(function() {
     });
   });
 });
+
+
+// ボタンの表示／非表示を切り替える関数
+const updateButton = () => {
+  if ($(window).scrollTop() >= 300) {
+    // 300px以上スクロールされた
+    $('.back-to-top').fadeIn();
+  } else {
+    $('.back-to-top').fadeOut();
+  }
+};
+
+// updateButtonを実行
+$(window).on('scroll', updateButton);
+$('.back-to-top').on('click', (e) => {
+  e.preventDefault();
+  $('html, body').animate({ scrollTop: 0 }, 600);
+});
+
+updateButton();
+
+const contentsTop = $('#contents').offset().top;
+$('html, body').animate({ scrollTop: contentsTop }, 600);
+
+

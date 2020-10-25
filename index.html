@@ -1,26 +1,275 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <title>WCB Cafe - MENU</title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSS -->
+    <!--CSS-->
+    <link rel="stylesheet" href="css/main.css">
+     <!--Googleフォント-->
     <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-
-    <!--vue.js-->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-
+    <meta charset="UTF-8">
+    <title>ポートフォリオ　メインページ</title>
 </head>
 
 <body>
-   
+        <header id="header">
+            <div id="app">
+            <!--モーダル１-->      
+            <div class="modal">
+                <div id="sing-up">
+                    <a v-on:click="openModal('entry')">
+                    <div class="modal1">
+                            <i class="ec-headerNav__itemIcon fas fa-lock fa-fw"></i>　新規会員登録</a>
+                    </div>
+                    <div id="overlay" v-show="showContent==='entry'" v-on:click>
+                        <div id="content">
+                            <div class="main-title">
+                                <h1>LA-PROSCIUTTERIA</h1>
+                            </div>
+                            <h2 class="modal-text">新規会員登録</h2>
+                            <div class="iptext">
+                                <div class="ip-list">
+                                    <p class="mandatory-btn">必須</p>
+                                    <p><i class="fas fa-user"></i>：お名前</p>
+                                </div>
+                                <input class="text-box" type="text" placeholder="例　松本　涼">
+                            </div>
+                            <div class="iptext">
+                                <div class="ip-list">
+                                    <p class="mandatory-btn">必須</p>
+                                    <p><i class="fas fa-mobile-alt"></i>：電話番号</p>
+                                </div>
+                                <input class="text-box" type="text" placeholder="080-XXXX-XXXX">
+                            </div>
+                            <div class="iptext">
+                                <div class="ip-list">
+                                    <p class="mandatory-btn">必須</p>
+                                    <p><i class="fas fa-envelope"></i>：メール</p>
+                                </div>
+                                <input class="text-box" type="text" placeholder="maile@taro 半角">
+                            </div>
+                            <div class="iptext">
+                                <div class="ip-list">
+                                    <p class="mandatory-btn">必須</p>
+                                    <p><i class="fas fa-key"></i>：パスワード</p>
+                                </div>
+                                <input class="text-box" type="text" placeholder="8文字　英数字">
+                            </div>
+                            <div class="iptext">
+                                <div class="ip-list">
+                                    <p class="mandatory-btn">必須</p>
+                                    <p>〒：郵便番号</p>
+                                </div>
+                                <input class="text-box" type="text" placeholder="〒XXX-XXXX">
+                            </div>
+                            <div class="iptext">
+                                <div class="ip-list">
+                                    <p class="mandatory-btn">必須</p>
+                                    <p><i class="fas fa-map-marker-alt"></i>：住所</p>
+                                </div>
+                                <input class="text-box" type="text" placeholder="埼玉県OO市OO番地OO">
+                            </div>
+                            <div class="modal-text">
+                                <a href="sin-up.html"><button class="modal-btn">送信</button></a>
+                                <div v-on:click="closeModal" id="sin-close" class="close"></div>
+                                <!--閉じるボタン-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--モーダル2--> 
+                <div id="log-in">
+                    <div class="modal1">
+                        <a v-if="!isLogin" v-on:click="openModal('login')"><i class="ec-headerNav__itemIcon fas fa-user fa-fw"></i>　ログイン</a>
+                        <a v-else v-on:click="logout"><i class="ec-headerNav__itemIcon fas fa-user fa-fw"></i>　ログアウト</a>
+                    </div>
+                    <div id="overlay" v-show="showContent==='login'">
+                        <div id="content" v-if="!isLogin">
+                            <div class="main-title">
+                                <h1>LA-PROSCIUTTERIA</h1>
+                            </div>
+                            <h2 class="modal-text">ログイン</h2>
+                            <form action="" method="post">
+                                <div class="Form">
+                                    <div class="iptext">
+                                        <div class="ip-list">
+                                            <p class="mandatory-btn">必須</p>
+                                            <p><i class="fas fa-envelope"></i>：メール</p>
+                                        </div>
+                                        <input class="text-box" type="text" placeholder="maile@taro 半角">
+                                    </div>
+                                    <div class="iptext">
+                                        <div class="ip-list">
+                                            <p class="mandatory-btn">必須</p>
+                                            <p><i class="fas fa-key"></i>：パスワード</p>
+                                        </div>
+                                        <input class="text-box" type="text" placeholder="8文字　英数字">
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="modal-text">
+                                <button class="modal-btn" v-on:click="login">送信</button>
+                                <div v-on:click="closeModal" class="close"></div>
+                                <!--閉じるボタン-->
+                            </div>
+                        </div>
+                        <div class="login-af" v-else id="content">
+                            <div class="main-title">
+                                <h1>LA-PROSCIUTTERIA</h1>
+                            </div>
+                            <h1>ログインしました</h1>
+                            <div v-on:click="closeModal" class="close"></div>
+                            <!--閉じるボタン-->
+                        </div>
+                    </div>
+                </div>
+                <!--モーダル3--> 
+                <div id="favorite">
+                    <a v-on:click="openModal('favorite')">
+                        <div class="modal1">
+                            <i class="ec-headerNav__itemIcon fas fa-shopping-cart"></i>　カート</a>
+                    </div>
+                    <div id="overlay" v-show="showContent==='favorite'" v-on:click>
+                        <div id="content">
+                            <h2 class="modal-text">カート一覧</h2>
+                            <table class="table_box">
+                                <tr>
+                                    <th>アイテム一覧</th>
+                                    <th>商品</th>
+                                    <th>商品案内</th>
+                                    <th>個数</th>
+                                    <th>削除</th>
+                                    <th>価格</th>
+                                </tr>
+                                <tr>
+                                    <td><a href="details.html"><img class="" src="images/palma01.jpg" alt="生ハム"width="100" height="100"></a></td>
+                                    <td>パルマの生ハム 16か月熟成　５０g</td>
+                                    <td>イタリアハムの王様とも言われる生ハム</td>
+                                    <td>1</td>
+
+                                    <td><a v-on:click="trashAlert()"><i class="fas fa-trash-alt"></i></a></td><!--ゴミ箱-->
+                                    <td>
+                                        <div class="cost">
+                                            <p>1000</p>
+                                            <h5>円</h5>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="details.html"><img class="" src="images/kitalla01.jpg" alt="キタッラ"width="100" height="100"></a></td>
+                                    <td>キタッラ　アラ　アマトリチャーナ</td>
+                                    <td>シェフ修行の地アブルッツォの手打ちパスタ</td>
+                                    <td>2</td>
+                                    <td><a v-on:click="trashAlert()"><i class="fas fa-trash-alt"></i></a></td><!--ゴミ箱-->
+                                    <td>
+                                        <div class="cost">
+                                            <p>1800</p>
+                                            <h5>円</h5>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="details.html"><img class="" src="images/jelart01.jpg" alt="ジェラート"width="100" height="100"></a></td>
+                                    <td>フランボワーズのジェラート</td>
+                                    <td>イタリアのアイスと言えばジェラート</td>
+                                    <td>2</td>
+                                    <td><a v-on:click="trashAlert()"><i class="fas fa-trash-alt"></i></a></td><!--ゴミ箱-->
+                                    <td>
+                                        <div class="cost">
+                                            <p>1000</p>
+                                            <h5>円</h5>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="total-cost">
+                                <p>合計</p>
+                                <h2>6600</h2>
+                                <p>円</p>
+                            </div>
+
+                            <div class="modal-text">
+                                <a href="cart-form.html"><button class="modal-btn">送信</button></a>
+                                <div v-on:click="closeModal" id="cart-close" class="close"></div>
+                                <!--閉じるボタン-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--モーダル4--> 
+                <div id="cart">
+                    <a v-on:click="openModal('cart')">
+                        <div class="modal1">
+                            <i class="ec-cartNavi__icon fas fa-heart fa-fw"> </i>　お気に入り</a>
+                    </div>
+                    <div id="overlay" v-show="showContent==='cart'" v-on:click="closeModal">
+                        <div id="content">
+                            <h2 class="modal-text">お気に入り一覧</h2>
+                            <table class="table_box">
+                                <tr>
+                                    <th>アイテム一覧</th>
+                                    <th>商品</th>
+                                    <th>商品案内</th>
+                                    <th>削除</th>
+
+                                </tr>
+                                <tr>
+                                    <td><a href="details.html"><img class="" src="images/kanori01.jpg" alt="カンノーリ"width="100" height="100"></a></td>
+                                    <td>イタリア銘菓カンノーリ ２人前</td>
+                                    <td>サクサク生地とリコッタチーズを使ったドルチェ。</td>
+
+
+                                    <td><a href="details.html"><i class="fas fa-trash-alt"></i></a></td>
+
+                                </tr>
+                                <tr>
+                                    <td><a href="details.html"><img class="" src="images/kitalla01.jpg" alt="パンチェッタ"width="100" height="100"></a></td>
+                                    <td>パンチェッタ　50g</td>
+                                    <td>スパイスの効いたイタリアのベーコン。</td>
+
+                                    <td><a href="details.html"><i class="fas fa-trash-alt"></i></a></td>
+
+                                </tr>
+                                <tr>
+                                    <td><a href="details.html"><img class="" src="images/uni01.jpg" alt="リッチョ"width="100" height="100"></a></td>
+                                    <td>国産生うにのリングイネ</td>
+                                    <td>うにの旨味をリングイネで。</td>
+                                    <td><a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                </tr>
+                            </table>
+                            <div class="modal-text">
+                                <div v-on:click="closeModal" class="close"></div>
+                                <!--閉じるボタン-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal1">
+                    <a href="gallery.html"><i class="fas fa-camera"></i> ギャラリー</a>
+                </div>
+            </div>
+            <!--モーダル終了--> 
+            <!--メインタイトル--> 
+            <div class="main-title">
+                <a href="main.html"><h1>LA-PROSCIUTTERIA</h1></a>
+                <p>本場イタリアで修行したシェフが送る、イタリアン料理と生ハム専門店</p>
+                <form id="form02" action="#">
+                    <input id="input02" type="text" placeholder=" 検索..">
+                    <input id="submit02" type="submit" value="">
+                </form>
+
+            </div>
+
+            <ul class="sub-title">
+                <li><a href="index.html">全て</a></li>
+                <li><a href="#">新作</a></li>
+                <li><a href="#">生ハム</a></li>
+                <li><a href="#">パスタ</a></li>
+                <li><a href="#">ジェラート</a></li>
+            </ul>
+    </div>
+    </header>
     <div id="app-icon" class="container">
         <div class="grid">
-
             <div class="item">
                 <section class="card">
                     <a href="details.html"><img class="card-img" src="images/palma01.jpg" alt="生ハム"width="300" height="200"></a>
@@ -31,9 +280,7 @@
                             <h5>円</h5>
                         </div>
                     <a href="details.html" class="btn btn-border">詳細を見る</a>
-
                     </div>
-
                     <div class="card-link">
                         <div class="icon">
                             <select name="month" id="month">
@@ -48,13 +295,13 @@
                               <option value="8">8</option>
                               <option value="9">9</option>
                             </select>
-
                             <a class="cart" v-on:click="cartAlert">  <i class="fas fa-cart-plus"></i> </a>
                             <a class="star" v-on:click="favoriteAlert"><i class="fas fa-star"></i></i></a>
                         </div>
                     </div>
             </section>
             </div>
+            
             <div class="item">
                 <section class="card">
                     <a href="details.html"><img class="card-img" src="images/panchetta01.jpg" alt="生ハム"width="300" height="200"></a>
@@ -64,10 +311,8 @@
                             <p>800</p>
                             <h5>円</h5>
                         </div>
-                    <a href="details.html" class="btn btn-border">詳細を見る</a>
-
+                        <a href="details.html" class="btn btn-border">詳細を見る</a>
                     </div>
-
                     <div class="card-link">
                         <div class="icon">
                             <select name="month" id="month">
@@ -82,7 +327,6 @@
                               <option value="8">8</option>
                               <option value="9">9</option>
                             </select>
-
                             <a class="cart" v-on:click="cartAlert">  <i class="fas fa-cart-plus"></i> </a>
                             <a class="star" v-on:click="favoriteAlert"><i class="fas fa-star"></i></i></a>
                         </div>
@@ -99,10 +343,8 @@
                             <p>1200</p>
                             <h5>円</h5>
                         </div>
-                    <a href="details.html" class="btn btn-border">詳細を見る</a>
-
+                        <a href="details.html" class="btn btn-border">詳細を見る</a>
                     </div>
-
                     <div class="card-link">
                         <div class="icon">
                             <select name="month" id="month">
@@ -117,7 +359,6 @@
                               <option value="8">8</option>
                               <option value="9">9</option>
                             </select>
-
                             <a class="cart" v-on:click="cartAlert">  <i class="fas fa-cart-plus"></i> </a>
                             <a class="star" v-on:click="favoriteAlert"><i class="fas fa-star"></i></i></a>
                         </div>
@@ -134,10 +375,8 @@
                             <p>1800</p>
                             <h5>円</h5>
                         </div>
-                    <a href="details.html" class="btn btn-border">詳細を見る</a>
-
+                        <a href="details.html" class="btn btn-border">詳細を見る</a>
                     </div>
-
                     <div class="card-link">
                         <div class="icon">
                             <select name="month" id="month">
@@ -152,7 +391,6 @@
                               <option value="8">8</option>
                               <option value="9">9</option>
                             </select>
-
                             <a class="cart" v-on:click="cartAlert">  <i class="fas fa-cart-plus"></i> </a>
                             <a class="star" v-on:click="favoriteAlert"><i class="fas fa-star"></i></i></a>
                         </div>
@@ -169,10 +407,8 @@
                             <p>2000</p>
                             <h5>円</h5>
                         </div>
-                    <a href="details.html" class="btn btn-border">詳細を見る</a>
-
+                        <a href="details.html" class="btn btn-border">詳細を見る</a>
                     </div>
-
                     <div class="card-link">
                         <div class="icon">
                             <select name="month" id="month">
@@ -187,13 +423,13 @@
                               <option value="8">8</option>
                               <option value="9">9</option>
                             </select>
-
                             <a class="cart" v-on:click="cartAlert">  <i class="fas fa-cart-plus"></i> </a>
                             <a class="star" v-on:click="favoriteAlert"><i class="fas fa-star"></i></i></a>
                         </div>
                     </div>
             </section>
             </div>
+ 
             <div class="item">
                 <section class="card">
                     <a href="details.html"><img class="card-img" src="images/anchobi01.jpg" alt="生ハム"width="300" height="200"></a>
@@ -203,10 +439,8 @@
                             <p>1500</p>
                             <h5>円</h5>
                         </div>
-                    <a href="details.html" class="btn btn-border">詳細を見る</a>
-
+                        <a href="details.html" class="btn btn-border">詳細を見る</a>
                     </div>
-
                     <div class="card-link">
                         <div class="icon">
                             <select name="month" id="month">
@@ -221,13 +455,13 @@
                               <option value="8">8</option>
                               <option value="9">9</option>
                             </select>
-
                             <a class="cart" v-on:click="cartAlert">  <i class="fas fa-cart-plus"></i> </a>
                             <a class="star" v-on:click="favoriteAlert"><i class="fas fa-star"></i></i></a>
                         </div>
                     </div>
             </section>
             </div>
+            
             <div class="item">
                 <section class="card">
                     <a href="details.html"><img class="card-img" src="images/tiramis01.jpg" alt="生ハム"width="300" height="200"></a>
@@ -237,10 +471,8 @@
                             <p>1000</p>
                             <h5>円</h5>
                         </div>
-                    <a href="details.html" class="btn btn-border">詳細を見る</a>
-
+                        <a href="details.html" class="btn btn-border">詳細を見る</a>
                     </div>
-
                     <div class="card-link">
                         <div class="icon">
                             <select name="month" id="month">
@@ -255,13 +487,13 @@
                               <option value="8">8</option>
                               <option value="9">9</option>
                             </select>
-
                             <a class="cart" v-on:click="cartAlert">  <i class="fas fa-cart-plus"></i> </a>
                             <a class="star" v-on:click="favoriteAlert"><i class="fas fa-star"></i></i></a>
                         </div>
                     </div>
             </section>
             </div>
+            
             <div class="item">
                 <section class="card">
                     <a href="details.html"><img class="card-img" src="images/kanori01.jpg" alt="生ハム"width="300" height="200"></a>
@@ -271,10 +503,8 @@
                             <p>1200</p>
                             <h5>円</h5>
                         </div>
-                    <a href="details.html" class="btn btn-border">詳細を見る</a>
-
+                        <a href="details.html" class="btn btn-border">詳細を見る</a>
                     </div>
-
                     <div class="card-link">
                         <div class="icon">
                             <select name="month" id="month">
@@ -289,13 +519,13 @@
                               <option value="8">8</option>
                               <option value="9">9</option>
                             </select>
-
                             <a class="cart" v-on:click="cartAlert">  <i class="fas fa-cart-plus"></i> </a>
                             <a class="star" v-on:click="favoriteAlert"><i class="fas fa-star"></i></i></a>
                         </div>
                     </div>
             </section>
             </div>
+            
             <div class="item">
                 <section class="card">
                     <a href="details.html"><img class="card-img" src="images/jelart01.jpg" alt="生ハム"width="300" height="200"></a>
@@ -305,10 +535,8 @@
                             <p>1000</p>
                             <h5>円</h5>
                         </div>
-                    <a href="details.html" class="btn btn-border">詳細を見る</a>
-
+                            <a href="details.html" class="btn btn-border">詳細を見る</a>
                     </div>
-
                     <div class="card-link">
                         <div class="icon">
                             <select name="month" id="month">
@@ -323,7 +551,6 @@
                               <option value="8">8</option>
                               <option value="9">9</option>
                             </select>
-
                             <a class="cart" v-on:click="cartAlert">  <i class="fas fa-cart-plus"></i> </a>
                             <a class="star" v-on:click="favoriteAlert"><i class="fas fa-star"></i></i></a>
                         </div>
@@ -331,13 +558,31 @@
             </section>
             </div>
             </div>
-    </div>
-    <!-- /.grid -->
+    </div><!-- /.grid -->
+    <!--フッター--> 
+    <footer>
+        <div class="footer-nav">
+            <p>© 2020 - PROSCIUTTERIA</p>
+        </div>
+        <div class="sns">
+            <a href="#" class="contact">Contact</a>
+            <a href="#" class="fb"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+            <a href="#" class="tw"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+            <a href="#" class="insta"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+        </div>
+    </footer>
+        <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!--vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+     <!--js-->
+    <script type="text/javascript" src="js/main.js"></script>
     <!--font-awesome-->
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
-    <!--vue.js-->
-
-    <script type="text/javascript" src="js/main.js"></script>
+    </div>
 </body>
+
+</html>
+
 
 </html>
