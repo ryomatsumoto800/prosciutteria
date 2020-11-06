@@ -92,7 +92,7 @@ const slide=new Vue({
   mounted() {
     setInterval(() => {
       this.current_slide = this.current_slide < this.slides.length - 1 ? this.current_slide + 1 : 0
-    }, 3000)
+    }, 5000)
   }, 
 })
 

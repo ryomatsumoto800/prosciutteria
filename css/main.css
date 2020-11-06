@@ -387,17 +387,9 @@ table tr {
   margin: auto;
 }
 
-.slider-inner {
-  position: absolute;
-  width: 960px;
-  height: 450px;
-  object-fit: cover;
-}
-
 .slide-img {
   width: 960px;
   height: 450px;
-
   object-fizt: cover;
 }
 
@@ -798,3 +790,4 @@ footer .sns .contact {
 .gallery-font{
   color:#fff;
 }
+
